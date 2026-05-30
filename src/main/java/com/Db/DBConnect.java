@@ -9,34 +9,33 @@ public class DBConnect {
 
     public static Connection getConn() {
 
-        try {
+       try {
 
-            if (conn == null || conn.isClosed()) {
+    if (conn == null || conn.isClosed()) {
 
-                Class.forName("com.mysql.cj.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
 
-                String url =
-                        "jdbc:mysql://zephyr.proxy.rlwy.net:36668/railway"
-                        + "?useSSL=false"
-                        + "&allowPublicKeyRetrieval=true"
-                        + "&serverTimezone=UTC";
+        String url =
+            "jdbc:mysql://zephyr.proxy.rlwy.net:36668/railway"
+            + "?useSSL=false"
+            + "&allowPublicKeyRetrieval=true";
 
-                String username = "root";
+        conn = DriverManager.getConnection(
+            url,
+            "root",
+            "BuMbzRVmXGDcpyusaGmxntlenflNivhc"
+        );
 
-                String password = "BuMbzRVmXGDcpyusaGmxntlenflNivhc";
+        System.out.println("DATABASE CONNECTED SUCCESSFULLY");
 
-                conn = DriverManager.getConnection(
-                        url,
-                        username,
-                        password
-                );
+    }
 
-                System.out.println("Database Connected Successfully!");
-            }
+} catch (Exception e) {
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    System.out.println("DATABASE CONNECTION FAILED");
+
+    e.printStackTrace();
+}
 
         return conn;
     }
